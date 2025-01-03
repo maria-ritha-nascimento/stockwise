@@ -17,3 +17,11 @@ Base = declarative_base()
 # Função para criar tabelas
 def create_tables():
     Base.metadata.create_all(bind=engine)
+
+# Função para obter uma sessão de banco de dados
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()
